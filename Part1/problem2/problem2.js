@@ -1,23 +1,28 @@
 function moneyChange(money) {
   // Your code here
   //rumuskan uangnya
-  let arrUang = [];
-  let maxPecahan = 10000;
-  for (let uang = 1; uang <= maxPecahan; uang++) {
-    if (uang == 1) {
-      arrUang.push(uang);
-    } else if (uang % maxPecahan == 0) {
-      arrUang.push(uang);
-    } else if (uang == maxPecahan / 2 ||
-    uang == maxPecahan / 5 || uang == maxPecahan / 10 || uang == maxPecahan / 20 || uang == maxPecahan / 50 || uang == maxPecahan / 100)
-    {
-      arrUang.push(uang);
-    
+  let arrUang = [1];
+  let maxPecahan = 6;
+  let sepuluh = 10;
+  for (let uang = 0; uang < maxPecahan; uang++) {
+    for (let i = 0; i < 3; i++) {
+      if (i == 0) {
+        arrUang.push(sepuluh);
+      } else if (i == 1) {
+        arrUang.push(sepuluh * 2);
+      } else {
+        arrUang.push(sepuluh * 5);
+      }
+    }
+    if (sepuluh < 3) {
+      sepuluh *= sepuluh ** (uang + 1);
+    } else if (sepuluh == 3) {
+      sepuluh /= 10 ** (uang - 1);
+    } else if (sepuluh == 4) {
+      sepuluh = (sepuluh / 10 ** (uang - 1)) * 10;
+    }
   }
   return arrUang;
-  /*let angka=[]
-  for(let i=1; i<money; i++){
-  }*/
 }
 console.log(moneyChange());
 // console.log(moneyChange(123))   // [100 20 1 1 1]
